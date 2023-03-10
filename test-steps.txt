@@ -1,0 +1,55 @@
+#================================================================================
+# [1] Setup "anaconda3.test"
+#================================================================================
+ll | grep anaconda3
+mv anaconda3 anaconda3.test
+ln -s anaconda3.test anaconda3
+ll | grep anaconda
+
+#================================================================================
+# [2] Download and move scripts
+#================================================================================
+git clone https://github.com/rapradono/playground.git
+cd playground
+cp test1.sh test2.sh ~/klayout
+
+cd ~/klayout
+chmod u+x test1.sh test2.sh
+
+#================================================================================
+# [3] Execute "script.sh"
+#================================================================================
+./test1.sh
+cd ~/klayout/test1-build-release
+make install
+cd ~/playground
+cp klayout.sh ~/klayout/test1-bin-release
+
+cd ~/klayout/test1-bin-release
+chmod u+x klayout.sh
+ll *.sh
+./klayout.sh
+
++--------------------------+
+|                          |
+|      GUI shows up        |
+|                          |
++--------------------------+
+
+#================================================================================
+# [3] Execute "script.sh"
+#================================================================================
+cd ~/klayout
+
+./test2.sh
+cd ~/klayout/test2-build-release
+make install
+cd ~/playground
+cp klayout.sh ~/klayout/test2-bin-release
+
+cd ~/klayout/test2-bin-release
+chmod u+x klayout.sh
+ll *.sh
+./klayout.sh
+
+[EOF]
