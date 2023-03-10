@@ -1,0 +1,332 @@
+#================================================================================
+# [1] Setup "anaconda3.B"
+#================================================================================
+(base) sekigawa@LM19:~ (3)$ ll | grep anaconda3
+(base) sekigawa@LM19:~ (4)$ mv anaconda3 anaconda3.B
+(base) sekigawa@LM19:~ (5)$ ln -s anaconda3.B anaconda3
+(base) sekigawa@LM19:~ (6)$ ll | grep anaconda3
+
+(base) sekigawa@LM19:~ (9)$ conda install ruby=3.1.2
+Collecting package metadata (current_repodata.json): done
+Solving environment: done
+
+## Package Plan ##
+
+  environment location: /home/sekigawa/anaconda3
+
+  added / updated specs:
+    - ruby=3.1.2
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    conda-22.11.1              |   py39h06a4308_4         927 KB
+    gdbm-1.18                  |       hd4cb3f1_4         194 KB
+    ruamel.yaml-0.17.21        |   py39h5eee18b_0         178 KB
+    ruamel.yaml.clib-0.2.6     |   py39h5eee18b_1         140 KB
+    ruby-3.1.2                 |       h437172d_0         7.2 MB
+    ------------------------------------------------------------
+                                           Total:         8.6 MB
+
+The following NEW packages will be INSTALLED:
+
+  gdbm               pkgs/main/linux-64::gdbm-1.18-hd4cb3f1_4 None
+  ruamel.yaml        pkgs/main/linux-64::ruamel.yaml-0.17.21-py39h5eee18b_0 None
+  ruamel.yaml.clib   pkgs/main/linux-64::ruamel.yaml.clib-0.2.6-py39h5eee18b_1 None
+  ruby               pkgs/main/linux-64::ruby-3.1.2-h437172d_0 None
+
+The following packages will be UPDATED:
+
+  conda                               22.9.0-py39h06a4308_0 --> 22.11.1-py39h06a4308_4 None
+
+
+Proceed ([y]/n)? y
+
+Downloading and Extracting Packages
+ruamel.yaml-0.17.21  | 178 KB    | ################################################################################## | 100%
+ruamel.yaml.clib-0.2 | 140 KB    | ################################################################################## | 100%
+ruby-3.1.2           | 7.2 MB    | ################################################################################## | 100%
+gdbm-1.18            | 194 KB    | ################################################################################## | 100%
+conda-22.11.1        | 927 KB    | ################################################################################## | 100%
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+Retrieving notices: ...working... done
+
+(base) sekigawa@LM19:~ (10)$ conda update --all
+:
+:
+:
+(base) sekigawa@LM19:~ (11)$ conda clean --all
+
+(base) sekigawa@LM19:~/anaconda3/lib (12)$ pwd
+/home/sekigawa/anaconda3/lib
+
+(base) sekigawa@LM19:~/anaconda3/lib (13)$ ll | grep ruby
+lrwxrwxrwx   1 sekigawa sekigawa        16 Jan 19 18:33 libruby.so -> libruby.so.3.1.2*
+lrwxrwxrwx   1 sekigawa sekigawa        16 Jan 19 18:33 libruby.so.3.1 -> libruby.so.3.1.2*
+-rwxrwxr-x   1 sekigawa sekigawa   4279744 Jan 19 18:33 libruby.so.3.1.2*
+drwxrwxr-x   4 sekigawa sekigawa      4096 Jan 19 18:30 ruby/
+
+(base) sekigawa@LM19:~/anaconda3/lib (14)$ file libruby.so.3.1.2
+libruby.so.3.1.2: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), \
+    dynamically linked, with debug_info, not stripped
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+(base) sekigawa@LM19:~/anaconda3/lib (15)$ strip libruby.so.3.1.2
+
+(base) sekigawa@LM19:~/anaconda3/lib (16)$ file libruby.so.3.1.2
+libruby.so.3.1.2: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), \
+    dynamically linked, stripped
+                        ^^^^^^^^so
+
+sekigawa@LM19:~ (17)$ pwd
+/home/sekigawa
+
+sekigawa@LM19:~ (18)$ mv anaconda3 anaconda3.B
+
+(base) sekigawa@LM19:~ (19)$ ln -s anaconda3.B anaconda3
+
+(base) sekigawa@LM19:~ (20)$ ll | grep anaconda
+lrwxrwxrwx  1 sekigawa sekigawa    11 Jan 22 07:36 anaconda3 -> anaconda3.B/
+drwxrwxr-x 28 sekigawa sekigawa  4096 Nov  9 22:03 anaconda3.A/
+drwxrwxr-x 28 sekigawa sekigawa  4096 Jan 19 18:33 anaconda3.B/
+
+
+#================================================================================
+# [2] Install OpenGL libraries using distribution's package manager
+#================================================================================
+(base) sekigawa@LM19:/usr/lib/x86_64-linux-gnu (1)$ pwd
+/usr/lib/x86_64-linux-gnu
+
+(base) sekigawa@LM19:/usr/lib/x86_64-linux-gnu (2)$ ll | grep libGL
+lrwxrwxrwx   1 root root       14 May 10  2019 libGL.so -> libGL.so.1.0.0
+lrwxrwxrwx   1 root root       14 May 31  2020 libGL.so.1 -> libGL.so.1.0.0
+-rw-r--r--   1 root root   567624 May 10  2019 libGL.so.1.0.0
+lrwxrwxrwx   1 root root       21 May 10  2019 libGLESv1_CM.so -> libGLESv1_CM.so.1.0.0
+lrwxrwxrwx   1 root root       21 May 10  2019 libGLESv1_CM.so.1 -> libGLESv1_CM.so.1.0.0
+-rw-r--r--   1 root root    43328 May 10  2019 libGLESv1_CM.so.1.0.0
+lrwxrwxrwx   1 root root       18 May 10  2019 libGLESv2.so -> libGLESv2.so.2.0.0
+lrwxrwxrwx   1 root root       18 May 31  2020 libGLESv2.so.2 -> libGLESv2.so.2.0.0
+-rw-r--r--   1 root root    72000 May 10  2019 libGLESv2.so.2.0.0
+-rw-r--r--   1 root root   926218 May 22  2016 libGLU.a
+lrwxrwxrwx   1 root root       15 May 22  2016 libGLU.so -> libGLU.so.1.3.1
+lrwxrwxrwx   1 root root       15 May 31  2020 libGLU.so.1 -> libGLU.so.1.3.1
+-rw-r--r--   1 root root   453352 May 22  2016 libGLU.so.1.3.1
+lrwxrwxrwx   1 root root       15 May 10  2019 libGLX.so -> libGLX.so.0.0.0
+lrwxrwxrwx   1 root root       15 May 31  2020 libGLX.so.0 -> libGLX.so.0.0.0
+-rw-r--r--   1 root root    68144 May 10  2019 libGLX.so.0.0.0
+lrwxrwxrwx   1 root root       16 Jun 12  2020 libGLX_indirect.so.0 -> libGLX_mesa.so.0
+lrwxrwxrwx   1 root root       20 Jun 12  2020 libGLX_mesa.so.0 -> libGLX_mesa.so.0.0.0
+-rw-r--r--   1 root root   488312 Jun 12  2020 libGLX_mesa.so.0.0.0
+lrwxrwxrwx   1 root root       22 May 10  2019 libGLdispatch.so -> libGLdispatch.so.0.0.0
+lrwxrwxrwx   1 root root       22 May 31  2020 libGLdispatch.so.0 -
+
+
+#================================================================================
+# [3] Execute "ana3B-1.sh"
+#================================================================================
+(base) sekigawa@LM19:~/GitWork/klayout (1)$ ./ana3B-1.sh
+:
+:
+:
+g++ -Wl,-O1 -Wl,-rpath,/home/sekigawa/anaconda3/lib -o ./fontgen fontgen.o   /home/sekigawa/\
+anaconda3/lib/libQt5Widgets.so /home/sekigawa/anaconda3/lib/libQt5Gui.so /home/sekigawa/anaconda3/\
+lib/libQt5Core.so -L/opt/conda/conda-bld/qt-main_1660123285207/_build_env/\
+bin/../x86_64-conda-linux-gnu/sysroot/usr/lib64 -lGL -lpthread
+
+/home/sekigawa/anaconda3/lib/libQt5Widgets.so: undefined reference to \
+`std::pmr::monotonic_buffer_resource::~monotonic_buffer_resource()@GLIBCXX_3.4.28'
+
+/home/sekigawa/anaconda3/lib/libQt5Core.so: undefined reference to \
+`std::__exception_ptr::exception_ptr::_M_release()@CXXABI_1.3.13'
+
+/home/sekigawa/anaconda3/lib/libQt5Widgets.so: undefined reference to `vtable for \
+std::pmr::monotonic_buffer_resource@GLIBCXX_3.4.28'
+
+/home/sekigawa/anaconda3/lib/libQt5Widgets.so: undefined reference to \
+`std::pmr::get_default_resource()@GLIBCXX_3.4.26'
+
+/home/sekigawa/anaconda3/lib/libQt5Widgets.so: undefined reference to \
+`std::__throw_bad_array_new_length()@GLIBCXX_3.4.29'
+
+/home/sekigawa/anaconda3/lib/libQt5Core.so: undefined reference to \
+`std::__exception_ptr::exception_ptr::_M_addref()@CXXABI_1.3.13'
+
+collect2: error: ld returned 1 exit status
+Makefile:279: recipe for target 'fontgen' failed
+make[1]: *** [fontgen] Error 1
+
+
+#================================================================================
+# [4] Fix "fontgen" build errors
+#================================================================================
+(base) sekigawa@LM19:~/GitWork/klayout/ana3B-1-build-release/fontgen (1)$ pwd
+/home/sekigawa/GitWork/klayout/ana3B-1-build-release/fontgen
+
+(base) sekigawa@LM19:~/GitWork/klayout/ana3B-1-build-release/fontgen (2)$ ll
+total 76
+drwxrwxr-x  2 sekigawa sekigawa  4096 Jan 22 08:18 ./
+drwxrwxr-x 30 sekigawa sekigawa  4096 Jan 22 08:19 ../
+-rw-rw-r--  1 sekigawa sekigawa 56215 Jan 22 08:17 Makefile
+-rw-rw-r--  1 sekigawa sekigawa 11400 Jan 22 08:18 fontgen.o
+
+(base) sekigawa@LM19:~/GitWork/klayout/ana3B-1-build-release/fontgen (3)$ make
+g++ -Wl,-O1 -Wl,-rpath,/home/sekigawa/anaconda3/lib -o ./fontgen fontgen.o   /home/sekigawa/anaconda3/lib/libQt5Widgets.so /home/sekigawa/anaconda3/lib/libQt5Gui.so /home/sekigawa/anaconda3/lib/libQt5Core.so -L/opt/conda/conda-bld/qt-main_1660123285207/_build_env/bin/../x86_64-conda-linux-gnu/sysroot/usr/lib64 -lGL -lpthread
+/home/sekigawa/anaconda3/lib/libQt5Widgets.so: undefined reference to `std::pmr::monotonic_buffer_resource::~monotonic_buffer_resource()@GLIBCXX_3.4.28'
+/home/sekigawa/anaconda3/lib/libQt5Core.so: undefined reference to `std::__exception_ptr::exception_ptr::_M_release()@CXXABI_1.3.13'
+/home/sekigawa/anaconda3/lib/libQt5Widgets.so: undefined reference to `vtable for std::pmr::monotonic_buffer_resource@GLIBCXX_3.4.28'
+/home/sekigawa/anaconda3/lib/libQt5Widgets.so: undefined reference to `std::pmr::get_default_resource()@GLIBCXX_3.4.26'
+/home/sekigawa/anaconda3/lib/libQt5Widgets.so: undefined reference to `std::__throw_bad_array_new_length()@GLIBCXX_3.4.29'
+/home/sekigawa/anaconda3/lib/libQt5Core.so: undefined reference to `std::__exception_ptr::exception_ptr::_M_addref()@CXXABI_1.3.13'
+collect2: error: ld returned 1 exit status
+Makefile:279: recipe for target 'fontgen' failed
+make: *** [fontgen] Error 1
+
+#--------------------------------------------------------------------------------
+# [4-1] Find the root causes
+#
+# << Hypotheses >>
+#    (1) g++  == /usr/bin/g++   g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0 attempts
+#        to link libstdc++.so under /usr/lib/x86_64-linux-gnu/
+#    (2) But the library is old and does not contain those symbols
+#--------------------------------------------------------------------------------
+(base) sekigawa@LM19:~ (1)$ cd /usr/lib/x86_64-linux-gnu/
+
+(base) sekigawa@LM19:/usr/lib/x86_64-linux-gnu (2)$ ll | grep stdc++
+lrwxrwxrwx   1 root root       19 Mar 10  2020 libstdc++.so.6 -> libstdc++.so.6.0.25
+-rw-r--r--   1 root root  1594864 Mar 10  2020 libstdc++.so.6.0.25  <=== older
+
+(base) sekigawa@LM19:/usr/lib/x86_64-linux-gnu (3)$ strings libstdc++.so.6.0.25 | grep GLIBCXX
+GLIBCXX_3.4
+GLIBCXX_3.4.1
+GLIBCXX_3.4.2
+GLIBCXX_3.4.3
+GLIBCXX_3.4.4
+GLIBCXX_3.4.5
+GLIBCXX_3.4.6
+GLIBCXX_3.4.7
+GLIBCXX_3.4.8
+GLIBCXX_3.4.9
+GLIBCXX_3.4.10
+GLIBCXX_3.4.11
+GLIBCXX_3.4.12
+GLIBCXX_3.4.13
+GLIBCXX_3.4.14
+GLIBCXX_3.4.15
+GLIBCXX_3.4.16
+GLIBCXX_3.4.17
+GLIBCXX_3.4.18
+GLIBCXX_3.4.19
+GLIBCXX_3.4.20
+GLIBCXX_3.4.21
+GLIBCXX_3.4.22
+GLIBCXX_3.4.23
+GLIBCXX_3.4.24
+GLIBCXX_3.4.25
+GLIBCXX_DEBUG_MESSAGE_LENGTH
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(base) sekigawa@LM19:~/anaconda3/lib (4)$ pwd
+/home/sekigawa/anaconda3/lib
+
+(base) sekigawa@LM19:~/anaconda3/lib (5)$ ll | grep stdc++
+lrwxrwxrwx   1 sekigawa sekigawa        19 Jan 19 18:27 libstdc++.so -> libstdc++.so.6.0.29*
+lrwxrwxrwx   1 sekigawa sekigawa        19 Jan 19 18:27 libstdc++.so.6 -> libstdc++.so.6.0.29*
+-rwxrwxr-x   2 sekigawa sekigawa  17981480 Jun  1  2022 libstdc++.so.6.0.29*  <=== newer
+
+(base) sekigawa@LM19:~/anaconda3/lib (6)$ strings libstdc++.so.6.0.29 | grep GLIBCXX_3.4.28
+GLIBCXX_3.4.28  <=== there is!
+GLIBCXX_3.4.28  <=== there is!
+
+
+#--------------------------------------------------------------------------------
+# [4-2] Edit "Makefile" so that /usr/bin/g++ can find "libstdc++.so.6.0.29"
+#--------------------------------------------------------------------------------
+(base) sekigawa@LM19:~/GitWork/klayout/ana3B-1-build-release/fontgen (4)$ diff Makefile*
+43c43
+< LIBS          = $(SUBLIBS) /home/sekigawa/anaconda3/lib/libQt5Widgets.so \
+/home/sekigawa/anaconda3/lib/libQt5Gui.so /home/sekigawa/anaconda3/lib/libQt5Core.so \
+-L/opt/conda/conda-bld/qt-main_1660123285207/_build_env/bin/../x86_64-conda-linux-gnu/sysroot/usr/lib64
+-L/home/sekigawa/anaconda3/lib -lGL -lpthread
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       add this
+---
+> LIBS          = $(SUBLIBS) /home/sekigawa/anaconda3/lib/libQt5Widgets.so
+/home/sekigawa/anaconda3/lib/libQt5Gui.so /home/sekigawa/anaconda3/lib/libQt5Core.so \
+-L/opt/conda/conda-bld/qt-main_1660123285207/_build_env/bin/../x86_64-conda-linux-gnu/sysroot/usr/lib64 \
+-lGL -lpthread
+
+#--------------------------------------------------------------------------------
+# [4-3] make "fontgen"
+#--------------------------------------------------------------------------------
+(base) sekigawa@LM19:~/GitWork/klayout/ana3B-1-build-release/fontgen (5)$ make
+g++ -Wl,-O1 -Wl,-rpath,/home/sekigawa/anaconda3/lib -o ./fontgen fontgen.o   \
+/home/sekigawa/anaconda3/lib/libQt5Widgets.so /home/sekigawa/anaconda3/lib/libQt5Gui.so \
+/home/sekigawa/anaconda3/lib/libQt5Core.so \
+-L/opt/conda/conda-bld/qt-main_1660123285207/_build_env/bin/../x86_64-conda-linux-gnu/sysroot/usr/lib64 \
+-L/home/sekigawa/anaconda3/lib -lGL -lpthread
+
+/usr/bin/ld: warning: /home/sekigawa/anaconda3/lib/libstdc++.so: unsupported GNU_PROPERTY_TYPE (5) type: 0xc0010001
+/usr/bin/ld: warning: /home/sekigawa/anaconda3/lib/libstdc++.so: unsupported GNU_PROPERTY_TYPE (5) type: 0xc0010002
+/usr/bin/ld: warning: /home/sekigawa/anaconda3/lib/libgcc_s.so.1: unsupported GNU_PROPERTY_TYPE (5) type: 0xc0010001
+/usr/bin/ld: warning: /home/sekigawa/anaconda3/lib/libgcc_s.so.1: unsupported GNU_PROPERTY_TYPE (5) type: 0xc0010002
+/usr/bin/ld: warning: /home/sekigawa/anaconda3/lib/libgcc_s.so.1: unsupported GNU_PROPERTY_TYPE (5) type: 0xc0010001
+/usr/bin/ld: warning: /home/sekigawa/anaconda3/lib/libgcc_s.so.1: unsupported GNU_PROPERTY_TYPE (5) type: 0xc0010002
+
+(base) sekigawa@LM19:~/GitWork/klayout/ana3B-1-build-release/fontgen (5)$ ll
+total 152
+drwxrwxr-x  2 sekigawa sekigawa  4096 Jan 22 09:14 ./
+drwxrwxr-x 30 sekigawa sekigawa  4096 Jan 22 08:19 ../
+-rw-rw-r--  1 sekigawa sekigawa 56243 Jan 22 09:08 Makefile
+-rw-rw-r--  1 sekigawa sekigawa 56215 Jan 22 08:17 Makefile.org
+-rwxrwxr-x  1 sekigawa sekigawa 19176 Jan 22 09:14 fontgen*     <=== made!
+-rw-rw-r--  1 sekigawa sekigawa 11400 Jan 22 08:18 fontgen.o
+
+
+#================================================================================
+# [5] Resume build
+#================================================================================
+(base) sekigawa@LM19:~/GitWork/klayout/ana3B-1-build-release (1)$ pwd
+/home/sekigawa/GitWork/klayout/ana3B-1-build-release
+
+(base) sekigawa@LM19:~/GitWork/klayout/ana3B-1-build-release (2)$ make 2>&1 | tee -a ../ana3B-1-build-release.log
+:
+:
+:
+ln -s libpymod_tests.so.0.28.3 libpymod_tests.so
+ln -s libpymod_tests.so.0.28.3 libpymod_tests.so.0
+ln -s libpymod_tests.so.0.28.3 libpymod_tests.so.0.28
+cp -f libpymod_tests.so.0.28.3 /home/sekigawa/GitWork/klayout/ana3B-1-build-release/pymod/unit_tests/../../pymod_tests.ut
+make[2]: Leaving directory '/home/sekigawa/GitWork/klayout/ana3B-1-build-release/pymod/unit_tests'
+make[1]: Leaving directory '/home/sekigawa/GitWork/klayout/ana3B-1-build-release/pymod'
+:
+:
+:
+It looks ended without errors!
+
+(base) sekigawa@LM19:~/GitWork/klayout/ana3B-1-build-release (3)$ make install
+:
+:
+:
+ONINCLUDE=/home/sekigawa/anaconda3/include/python3.9 PYTHONEXTSUFFIX=.cpython-39-x86_64-linux-gnu.so HAVE_PYTHON=1 HAVE_QTBINDINGS=1 HAVE_QT_UITOOLS=1 HAVE_QT_NETWORK=1 HAVE_QT_SQL=1 HAVE_QT_SVG=1 HAVE_QT_PRINTSUPPORT=1 HAVE_QT_MULTIMEDIA=1 HAVE_QT_DESIGNER=1 HAVE_QT_XML=1 HAVE_64BIT_COORD=0 HAVE_QT=1 HAVE_CURL=0 HAVE_EXPAT=0 HAVE_PNG=0 PREFIX=/home/sekigawa/GitWork/klayout/ana3B-1-bin-release RPATH=ana3B-1-bin-release KLAYOUT_VERSION=0.28.3 KLAYOUT_VERSION_DATE=2023-01-22 KLAYOUT_VERSION_REV=33af2b8fc RUBYINCLUDE=/home/sekigawa/anaconda3.B/include/ruby-3.1.0 RUBYINCLUDE2=/home/sekigawa/anaconda3.B/include/ruby-3.1.0/x86_64-linux ) && make -f Makefile install
+make[2]: Entering directory '/home/sekigawa/GitWork/klayout/ana3B-1-build-release/pymod/unit_tests'
+make[2]: Nothing to be done for 'install'.
+make[2]: Leaving directory '/home/sekigawa/GitWork/klayout/ana3B-1-build-release/pymod/unit_tests'
+make[1]: Leaving directory '/home/sekigawa/GitWork/klayout/ana3B-1-build-release/pymod'
+
+(base) sekigawa@LM19:~/GitWork/klayout/ana3B-1-bin-release (4)$ pwd
+/home/sekigawa/GitWork/klayout/ana3B-1-bin-release
+
+(base) sekigawa@LM19:~/GitWork/klayout/ana3B-1-bin-release (5)$ ll *.sh
+-rwxr-xr-x 1 sekigawa sekigawa 741 Jan 22 13:21 klayout.sh*
+
+(base) sekigawa@LM19:~/GitWork/klayout/ana3B-1-bin-release (6)$ ./klayout.sh
++--------------------------+
+|                          |
+|      GUI shows up        |
+|                          |
++--------------------------+
+
+[EOF]
